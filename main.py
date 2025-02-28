@@ -21,6 +21,7 @@ def main():
         fps_text = font.render(f"FPS:{fps.get_fps():.2f}", True, (255, 0, 0))
         screen.blit(fps_text, (1150,10))
         character.draw(screen)
+        character.update(dt)
         pygame.display.flip()
 
 if __name__ == "__main__":    
