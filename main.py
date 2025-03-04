@@ -45,15 +45,12 @@ def main():
         #Shooting
         for bullet in shots:
             bullet.update(dt)
-            bullet.draw(screen)
 
         #Initiate asteroids
-        for updatable_object in updatable:
-            if updatable_object is character:
-                continue
-            if isinstance(updatable_object, CircleShape):
-                if updatable_object.collision(character):
-                    print(f"Collision detected at {updatable_object.position}")
+        for ast_obj in asteroids:
+            if isinstance(ast_obj, CircleShape):
+                if ast_obj.collision(character):
+                    print(f"Collision detected at {ast_obj.position}")
                     sys.exit("Game Over!")
 
 
