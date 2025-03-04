@@ -1,8 +1,10 @@
 import pygame
+import sys
 import player
 import asteroid
 import asteroidfield
 from constants import *
+from circleshape import CircleShape
 
 def main():
     pygame.init()
@@ -29,12 +31,22 @@ def main():
         #Update game state
         dt = fps.tick(60) / 1000
         updatable.update(dt)
+
         #Clear screen
         screen.fill("black")
 
         #Draw everything
         for drawable_object in drawable:
             drawable_object.draw(screen)
+
+        #Initiate asteroids
+        for updatable_object in updatable:
+            if updatable_object is character:
+                continue
+            if isinstance(updatable_object, CircleShape):
+                if updatable_object.collision(character):
+                    print(f"Collision detected at {updatable_object.position}")
+                    sys.exit("Game Over!")
 
         #Draw FPS counter
         font = pygame.font.Font(None, 36)
