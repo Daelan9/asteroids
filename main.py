@@ -48,11 +48,16 @@ def main():
 
         #Initiate asteroids
         for ast_obj in asteroids:
+
+            for bullet in shots:
+                if ast_obj.collision(bullet):
+                    ast_obj.split()
+                    bullet.kill()
+
             if isinstance(ast_obj, CircleShape):
                 if ast_obj.collision(character):
-                    print(f"Collision detected at {ast_obj.position}")
+                    print(f"Collision with an asteroid detected at {ast_obj.position}")
                     sys.exit("Game Over!")
-
 
         #Draw FPS counter
         font = pygame.font.Font(None, 36)
